@@ -14,15 +14,8 @@ func _on_ScoreArea_body_entered(_body):
 	else:
 		glVars.scoreEnemy  += 1
 	timer.start(3)
-	$"../../Label".text = "SCORE:\nYOU \t" + String(glVars.scorePlayer) + "\nENEMY \t" + String(glVars.scoreEnemy)
-	$"../../Ball".hide()
-	$"../../Ball".sleeping = true
-	call_deferred("disableColl")
+	$"../../Label".text = "SCORE:\nYOU%8d\nENEMY%3d" % [glVars.scorePlayer, glVars.scoreEnemy]
 	$"../../Label".show()
-
-
-func disableColl():
-	$"../../Ball/CollisionShape2D".disabled = true
 
 
 var time = 3
@@ -39,9 +32,7 @@ func reload_scene():
 		timer.stop()
 		$"../../TimeLabel".hide()
 		time = 3
-		get_tree().reload_current_scene()
+		var _s = get_tree().reload_current_scene()
 	else:
 		$"../../TimeLabel".text = String(time)
 		time -= 1
-
-	

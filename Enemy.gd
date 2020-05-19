@@ -16,6 +16,7 @@ func _ready():
 			moveSpeed = 6
 	yCompensate = moveSpeed * 10
 
+
 onready var ball = $"../Ball"
 var prev_bPosx_predict = 0
 var prev_bVel = Vector2(0, 0)
@@ -37,8 +38,6 @@ func _physics_process(delta):
 				prev_vel = move_and_collide(Vector2(dir * abs(self.position[0] - bPosx_predict) * moveSpeed, 0) * delta)
 				return
 	#print("prev_vel ", prev_vel.length())
-	
 	var dir = prev_bPosx_predict - self.position[0]
 	dir /= abs(dir)
 	prev_vel = move_and_collide(Vector2(dir * abs(self.position[0] - prev_bPosx_predict) * moveSpeed, 0) * delta) 
-
