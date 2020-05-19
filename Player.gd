@@ -10,8 +10,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var prev_mPosx = 0
-var new_vel
-func _process(_delta):
+var prev_vel
+func _physics_process(delta):
 	var mPos = get_global_mouse_position()
 	if prev_mPosx != mPos[0]:
 		var pos = self.position
@@ -19,6 +19,12 @@ func _process(_delta):
 		if dir != 0:
 			dir /= abs(dir)
 		#print("mPosx = ", mPos[0], "prev_mPosx = ", prev_mPosx)
-		new_vel = move_and_collide(Vector2(dir * abs(pos[0] - mPos[0]) * moveSpeed, 0))
-	else:
-		new_vel = move_and_collide(new_vel)
+		
+		var tmp = move_and_collide(Vector2(dir * abs(pos[0] - mPos[0]) * moveSpeed, 0) * delta) 
+		if !(tmp is KinematicCollision2D):
+			prev_vel = tmp
+	elif prev_vel != null:
+		var tmp = move_and_collide(prev_vel * delta)
+		if !(tmp is KinematicCollision2D):
+			prev_vel = tmp
+		
