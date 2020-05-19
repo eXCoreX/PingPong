@@ -50,3 +50,4 @@ export_presets.cfg
 /Build/
 
 # End of https://www.gitignore.io/api/c++,godot
+.DS_Store
