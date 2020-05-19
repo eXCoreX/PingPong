@@ -20,4 +20,6 @@ func _input(_event):
 
 func _on_resize():
 	GlobalVars.currentResolution = OS.window_size
+	get_tree().paused = true
 	var _sc = get_tree().reload_current_scene()
+	get_tree().paused = false	

@@ -34,7 +34,9 @@ func reload_scene():
 		timer.stop()
 		$"../../TimeLabel".hide()
 		time = 3
+		get_tree().paused = true
 		var _s = get_tree().reload_current_scene()
+		get_tree().paused = false
 	else:
 		$"../../TimeLabel".text = String(time)
 		time -= 1
