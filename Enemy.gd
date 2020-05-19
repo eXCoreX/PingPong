@@ -26,15 +26,16 @@ func _physics_process(delta):
 	if bVel != prev_bVel:
 		prev_bVel = bVel
 		var bPos = ball.position
-		var bPosx_predict = bPos[0] + abs((bPos[1] - 80) /  bVel[1]) *  bVel[0]
-		bPosx_predict = clamp(bPosx_predict, 0, OS.window_size[0])
-		if prev_bPosx_predict != bPosx_predict:
-			#print("Predict: ", bPosx_predict)
-			prev_bPosx_predict = bPosx_predict
-			var dir = bPosx_predict - self.position[0]
-			dir /= abs(dir)
-			prev_vel = move_and_collide(Vector2(dir * abs(self.position[0] - bPosx_predict) * moveSpeed, 0) * delta)
-			return
+		if bVel.length() != 0:
+			var bPosx_predict = bPos[0] + abs((bPos[1] - 80) /  bVel[1]) *  bVel[0]
+			bPosx_predict = clamp(bPosx_predict, 0, OS.window_size[0])
+			if prev_bPosx_predict != bPosx_predict:
+				#print("Predict: ", bPosx_predict)
+				prev_bPosx_predict = bPosx_predict
+				var dir = bPosx_predict - self.position[0]
+				dir /= abs(dir)
+				prev_vel = move_and_collide(Vector2(dir * abs(self.position[0] - bPosx_predict) * moveSpeed, 0) * delta)
+				return
 	#print("prev_vel ", prev_vel.length())
 	
 	var dir = prev_bPosx_predict - self.position[0]

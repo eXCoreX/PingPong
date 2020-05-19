@@ -8,15 +8,23 @@ export var INIT_VEL = 800
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var rng = RandomNumberGenerator.new()
-	rng.seed = hash(OS.get_datetime())
+	rng.randomize()
 	var window_size = OS.window_size
-	self.position = Vector2(rng.randi_range(50, window_size[0]), window_size[1] / 2)
-	self.linear_velocity = Vector2(randf() - randf(), randf() - randf())
+	self.position = Vector2(rng.randi_range(50, 1280-50), 720 / 2)
+	var vx = randf() + 0.1
+	var vy = randf() + 0.1
+	if rng.randi_range(0, 1) == 0:
+		vx *= -1
+	if rng.randi_range(0, 1) == 0:
+		vy *= -1
+	self.linear_velocity = Vector2(vx, vy)
 	self.linear_velocity = linear_velocity.normalized()*INIT_VEL
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
+	if sleeping || self.linear_velocity.length() == 0:
+		return
 	if self.linear_velocity.length() < MIN_VEL:
 		var coef = MIN_VEL / self.linear_velocity.length()
 		self.linear_velocity *= coef
