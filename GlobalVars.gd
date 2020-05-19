@@ -7,3 +7,7 @@ var lastResolution = currentResolution
 
 func _ready():
 	currentResolution = OS.window_size
+
+
+func _unpause():
+	get_tree().paused = false

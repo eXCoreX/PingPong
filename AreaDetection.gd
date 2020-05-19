@@ -1,10 +1,12 @@
 extends Area2D
 
+const BALLSC = preload("res://Ball.tscn")
+
 var timer = Timer.new()
 
 func _ready():
-	timer.connect("timeout", self, "reload_scene")
-	add_child(timer)
+	timer.connect("timeout", self, "count_down")
+	add_child(timer, true)
 
 onready var glVars = $"../../../GlobalVars"
 
@@ -22,7 +24,7 @@ func _on_ScoreArea_body_entered(_body):
 
 var time = 3
 
-func reload_scene():
+func count_down():
 	if time == 3:
 		timer.stop()
 		$"../../Label".hide()
@@ -34,9 +36,17 @@ func reload_scene():
 		timer.stop()
 		$"../../TimeLabel".hide()
 		time = 3
-		get_tree().paused = true
-		var _s = get_tree().reload_current_scene()
-		get_tree().paused = false
+		call_deferred("reload_scene")
 	else:
 		$"../../TimeLabel".text = String(time)
 		time -= 1
+
+
+func reload_scene():
+	$"../../Ball".free()
+	var to_add = BALLSC.instance()
+	to_add.name = "Ball"
+	$"../../".add_child(to_add)
+	$"../PlayerArea".connect("body_entered", $"../PlayerArea", "_on_ScoreArea_body_entered")
+	$"../EnemyArea".connect("body_entered", $"../EnemyArea", "_on_ScoreArea_body_entered")
+	

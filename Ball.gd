@@ -16,6 +16,9 @@ func _ready():
 		vy *= -1
 	self.linear_velocity = Vector2(vx, vy)
 	self.linear_velocity = linear_velocity.normalized()*INIT_VEL
+	
+	MIN_VEL *= GlobalVars.currentResolution[1] / 720
+	MAX_VEL *= GlobalVars.currentResolution[1] / 720
 
 
 func _physics_process(_delta):

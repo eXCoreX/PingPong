@@ -5,25 +5,28 @@ export(int, "Easy", "Medium", "Hard", "INSANE") var DIFFICULTY = 1
 var moveSpeed = 3
 var yCompensate = 30
 func _ready():
-	match DIFFICULTY:
-		0:
-			moveSpeed = 4
-		1:
-			moveSpeed = 4.5
-		2:
-			moveSpeed = 5
-		3:
-			moveSpeed = 6
-	moveSpeed *= 720.0 / GlobalVars.currentResolution[1]
-	yCompensate = moveSpeed * 10
+#	match DIFFICULTY:
+#		0:
+#			moveSpeed = 4
+#		1:
+#			moveSpeed = 4.5
+#		2:
+#			moveSpeed = 5
+#		3:
+#			moveSpeed = 6
+#	moveSpeed *= 720.0 / GlobalVars.currentResolution[1]
+#	yCompensate = moveSpeed * 10
+	pass
 
-
-onready var ball = $"../Ball"
 var prev_bPosx_predict = 0
 var prev_bVel = Vector2(0, 0)
 var prev_vel = Vector2(0, 0)
 
 func _physics_process(delta):
+	var ball = $"../Ball"
+	if ball == null:
+		for e in get_tree().root.get_children():
+			print(e.name)
 	var bVel = ball.linear_velocity
 	if bVel[1] > 0 || ball.position[1] < self.position[1]:
 		return
