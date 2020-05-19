@@ -7,7 +7,7 @@ export var INIT_VEL = 800
 func _ready():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	self.position = Vector2(rng.randi_range(50, 1280-50), 720 / 2)
+	self.position = Vector2(rng.randi_range(50, GlobalVars.currentResolution[0]-50), GlobalVars.currentResolution[1] / 2)
 	var vx = randf() + 0.1
 	var vy = randf() + 0.1
 	if rng.randi_range(0, 1) == 0:

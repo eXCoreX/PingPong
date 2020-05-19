@@ -9,6 +9,8 @@ func _ready():
 onready var glVars = $"../../../GlobalVars"
 
 func _on_ScoreArea_body_entered(_body):
+	$"../PlayerArea".disconnect("body_entered", $"../PlayerArea", "_on_ScoreArea_body_entered")
+	$"../EnemyArea".disconnect("body_entered", $"../EnemyArea", "_on_ScoreArea_body_entered")
 	if self.name == "EnemyArea":
 		glVars.scorePlayer += 1
 	else:

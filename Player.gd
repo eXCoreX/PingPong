@@ -4,7 +4,8 @@ extends KinematicBody2D
 export var moveSpeed = 50.0
 
 func _ready():
-	position[0] = get_global_mouse_position()[0]
+	position[0] = GlobalVars.currentResolution[0] / 2
+	position[1] = GlobalVars.currentResolution[1] - 50
 
 
 var prev_mPosx = 0

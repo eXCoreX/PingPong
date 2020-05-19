@@ -14,6 +14,7 @@ func _ready():
 			moveSpeed = 5
 		3:
 			moveSpeed = 6
+	moveSpeed *= 720.0 / GlobalVars.currentResolution[1]
 	yCompensate = moveSpeed * 10
 
 
@@ -24,6 +25,8 @@ var prev_vel = Vector2(0, 0)
 
 func _physics_process(delta):
 	var bVel = ball.linear_velocity
+	if bVel[1] > 0 || ball.position[1] < self.position[1]:
+		return
 	if bVel != prev_bVel:
 		prev_bVel = bVel
 		var bPos = ball.position
