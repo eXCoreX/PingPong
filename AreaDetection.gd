@@ -47,6 +47,6 @@ func reload_scene():
 	var to_add = BALLSC.instance()
 	to_add.name = "Ball"
 	$"../../".add_child(to_add)
-	$"../PlayerArea".connect("body_entered", $"../PlayerArea", "_on_ScoreArea_body_entered")
-	$"../EnemyArea".connect("body_entered", $"../EnemyArea", "_on_ScoreArea_body_entered")
+	var _c = $"../PlayerArea".connect("body_entered", $"../PlayerArea", "_on_ScoreArea_body_entered")
+	var _c2 = $"../EnemyArea".connect("body_entered", $"../EnemyArea", "_on_ScoreArea_body_entered")
 	

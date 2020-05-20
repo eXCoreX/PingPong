@@ -4,8 +4,15 @@ export var MIN_VEL = 350
 export var MAX_VEL = 5000
 export var INIT_VEL = 800
 
+export(bool) var enableBoost = false
+
+var timer = Timer.new()
+
 func _ready():
 	var rng = RandomNumberGenerator.new()
+	timer.connect("timeout", self, "print_velocity")
+	self.add_child(timer)
+	timer.start(1)
 	rng.randomize()
 	self.position = Vector2(rng.randi_range(50, GlobalVars.currentResolution[0]-50), GlobalVars.currentResolution[1] / 2)
 	var vx = randf() + 0.1
@@ -30,3 +37,13 @@ func _physics_process(_delta):
 	if self.linear_velocity.length() > MAX_VEL:
 		var coef = MAX_VEL / self.linear_velocity.length()
 		self.linear_velocity *= coef
+
+
+func _on_Ball_body_entered(body):
+	if enableBoost && body.name == "Player" && Input.is_mouse_button_pressed(1):
+		self.apply_central_impulse(self.linear_velocity * 0.01)
+
+
+func print_velocity():
+	print(self.linear_velocity)
+	print(self.linear_velocity.length())

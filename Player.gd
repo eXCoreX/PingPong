@@ -20,7 +20,7 @@ func _physics_process(delta):
 		if dir != 0:
 			dir /= abs(dir)
 		#print("mPosx = ", mPos[0], "prev_mPosx = ", prev_mPosx)
-		var tmp = move_and_collide(Vector2(dir * abs(pos[0] - mPos[0]) * moveSpeed, 0) * delta) 
+		var tmp = move_and_collide(Vector2(dir * abs(pos[0] - mPos[0]) * moveSpeed, 0) * delta)
 		if tmp != null && !(tmp is KinematicCollision2D):
 			prev_vel = tmp
 	elif prev_vel != null:

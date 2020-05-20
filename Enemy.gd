@@ -5,17 +5,17 @@ export(int, "Easy", "Medium", "Hard", "INSANE") var DIFFICULTY = 1
 var moveSpeed = 3
 var yCompensate = 30
 func _ready():
-#	match DIFFICULTY:
-#		0:
-#			moveSpeed = 4
-#		1:
-#			moveSpeed = 4.5
-#		2:
-#			moveSpeed = 5
-#		3:
-#			moveSpeed = 6
-#	moveSpeed *= 720.0 / GlobalVars.currentResolution[1]
-#	yCompensate = moveSpeed * 10
+	match DIFFICULTY:
+		0:
+			moveSpeed = 4
+		1:
+			moveSpeed = 4.5
+		2:
+			moveSpeed = 5
+		3:
+			moveSpeed = 6
+	moveSpeed *= 720.0 / GlobalVars.currentResolution[1]
+	yCompensate = moveSpeed * 10
 	pass
 
 var prev_bPosx_predict = 0
