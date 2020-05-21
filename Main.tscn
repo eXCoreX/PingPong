@@ -88,9 +88,9 @@ rotation = 1.5708
 shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="WorldBorder/RightWall"]
-position = Vector2( 0, -0.00366211 )
 rotation = -1.5708
 scale = Vector2( 0.2, 1 )
+z_index = -2
 texture = ExtResource( 5 )
 
 [node name="LeftWall" type="CollisionShape2D" parent="WorldBorder"]
@@ -101,6 +101,7 @@ shape = SubResource( 4 )
 [node name="Sprite" type="Sprite" parent="WorldBorder/LeftWall"]
 rotation = -1.5708
 scale = Vector2( 0.2, 1 )
+z_index = -2
 texture = ExtResource( 5 )
 
 [node name="EnemyArea" type="Area2D" parent="WorldBorder"]
@@ -111,7 +112,6 @@ script = ExtResource( 7 )
 shape = SubResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="WorldBorder/EnemyArea"]
-rotation = 3.14159
 scale = Vector2( 0.4, 0.2 )
 texture = ExtResource( 12 )
 
@@ -124,6 +124,7 @@ rotation = -3.14159
 shape = SubResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="WorldBorder/PlayerArea"]
+rotation = 3.14159
 scale = Vector2( 0.4, 0.2 )
 texture = ExtResource( 11 )
 

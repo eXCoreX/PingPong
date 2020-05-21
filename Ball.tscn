@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Sprites/PingPong_ball.png" type="Texture" id=1]
 [ext_resource path="res://Ball.gd" type="Script" id=2]
 [ext_resource path="res://addons/Trail/trail_2d.gd" type="Script" id=3]
+[ext_resource path="res://Sounds/platform.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/wall.wav" type="AudioStream" id=5]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -22,6 +24,8 @@ colors = PoolColorArray( 0.0740204, 0.106377, 0.902344, 0, 0.134277, 0.213585, 0
 position = Vector2( 442.105, 268.144 )
 mass = 0.23
 physics_material_override = SubResource( 1 )
+contacts_reported = 2
+contact_monitor = true
 linear_damp = 0.0
 angular_damp = 0.0
 script = ExtResource( 2 )
@@ -44,3 +48,11 @@ width_curve = SubResource( 3 )
 gradient = SubResource( 4 )
 script = ExtResource( 3 )
 distance = 10.0
+
+[node name="PlatformSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+
+[node name="WallSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+volume_db = -3.0
+[connection signal="body_entered" from="." to="." method="_on_Ball_body_entered"]
