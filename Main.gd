@@ -7,6 +7,8 @@ func _ready():
 		firstDelay = false
 		$WorldBorder/PlayerArea.count_down()
 	var _con = get_viewport().connect("size_changed", self, "_on_resize")
+	$BackgroundSprite.scale = Vector2(0.42*GlobalVars.currentResolution[0]/1280, 0.42*GlobalVars.currentResolution[0]/1280)
+	$BackgroundSprite.position = GlobalVars.currentResolution / 2
 	pass
 	
 	
@@ -27,6 +29,12 @@ func toggle_fullscreen():
 	call_deferred("_on_resize")
 
 func _on_resize():
+	if OS.window_size[0] < GlobalVars.minimumResolution[0]:
+		OS.window_size[0] = GlobalVars.minimumResolution[0]
+	if OS.window_size[1] < GlobalVars.minimumResolution[1]:
+		OS.window_size[1] = GlobalVars.minimumResolution[1]
+	if OS.window_size[0] / OS.window_size[1] < GlobalVars.minimumAspectRatio:
+		OS.window_size[0] = OS.window_size[1]
 	call_deferred("_on_resize_2")
 	pass
 

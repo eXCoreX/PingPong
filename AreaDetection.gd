@@ -18,27 +18,30 @@ func _on_ScoreArea_body_entered(_body):
 	else:
 		glVars.scoreEnemy  += 1
 	timer.start(3)
-	$"../../Label".text = "SCORE:\nYOU%8d\nENEMY%3d" % [glVars.scorePlayer, glVars.scoreEnemy]
-	$"../../Label".show()
+	$"../../Panel".show()
+	$"../../Panel/Label".text = "SCORE:\nYOU%8d\nENEMY%3d" % [glVars.scorePlayer, glVars.scoreEnemy]
+	$"../../Panel/Label".show()
 
 
 var time = 3
 
 func count_down():
 	if time == 3:
+		$"../../Panel".show()
 		timer.stop()
-		$"../../Label".hide()
-		$"../../TimeLabel".text = "3"
-		$"../../TimeLabel".show()
+		$"../../Panel/Label".hide()
+		$"../../Panel/TimeLabel".text = "3"
+		$"../../Panel/TimeLabel".show()
 		time -= 1
 		timer.start(1)
 	elif time == 0:
 		timer.stop()
-		$"../../TimeLabel".hide()
+		$"../../Panel/TimeLabel".hide()
+		$"../../Panel".hide()
 		time = 3
 		call_deferred("reload_scene")
 	else:
-		$"../../TimeLabel".text = String(time)
+		$"../../Panel/TimeLabel".text = String(time)
 		time -= 1
 
 
