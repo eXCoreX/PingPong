@@ -62,7 +62,7 @@ script = ExtResource( 4 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="Sprite2" type="Sprite" parent="Enemy"]
+[node name="Sprite" type="Sprite" parent="Enemy"]
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 1 )
 

@@ -38,7 +38,6 @@ func _physics_process(delta):
 			var ballShape = $"../Ball/CollisionShape2D".shape as CircleShape2D
 			var bPosx_predict = bPos[0] + ((bPos[1] - ballShape.radius - self.position[1] - selfShape.radius) / (-bVel[1])) *  bVel[0]
 			bPosx_predict = clamp(bPosx_predict, 0, OS.window_size[0])
-			print(bPosx_predict)
 			if prev_bPosx_predict != bPosx_predict:
 				#print("Predict: ", bPosx_predict)
 				prev_bPosx_predict = bPosx_predict

@@ -25,7 +25,7 @@ func _input(_event):
 
 
 func _on_exit_confirm():
-	get_tree().change_scene("Menu.tscn")
+	var _sc = get_tree().change_scene("Menu.tscn")
 
 
 func toggle_fullscreen():
