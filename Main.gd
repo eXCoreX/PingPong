@@ -7,7 +7,7 @@ func _ready():
 		firstDelay = false
 		$WorldBorder/PlayerArea.count_down()
 	var _con = get_viewport().connect("size_changed", self, "_on_resize")
-	$BackgroundSprite.scale = Vector2(0.42*GlobalVars.currentResolution[0]/1280, 0.42*GlobalVars.currentResolution[0]/1280)
+	$BackgroundSprite.scale = Vector2(0.425*GlobalVars.currentResolution[0]/1280, 0.425*GlobalVars.currentResolution[0]/1280)
 	$BackgroundSprite.position = GlobalVars.currentResolution / 2
 	pass
 	

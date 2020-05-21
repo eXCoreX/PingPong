@@ -88,6 +88,7 @@ rotation = 1.5708
 shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="WorldBorder/RightWall"]
+position = Vector2( 0, -0.00366211 )
 rotation = -1.5708
 scale = Vector2( 0.2, 1 )
 texture = ExtResource( 5 )
@@ -127,6 +128,7 @@ scale = Vector2( 0.4, 0.2 )
 texture = ExtResource( 11 )
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 margin_left = 320.0
 margin_top = 180.0
 margin_right = 960.0
@@ -138,6 +140,7 @@ __meta__ = {
 }
 
 [node name="TimeLabel" type="Label" parent="Panel"]
+visible = false
 margin_right = 640.0
 margin_bottom = 360.0
 custom_fonts/font = SubResource( 7 )
