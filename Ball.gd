@@ -6,13 +6,17 @@ export var INIT_VEL = 800
 
 export(bool) var enableBoost = false
 
-var timer = Timer.new()
+#var timer = Timer.new()
 
 func _ready():
+	MIN_VEL *= GlobalVars.currentResolution[1] / 720
+	MAX_VEL *= GlobalVars.currentResolution[1] / 720
+	INIT_VEL *= GlobalVars.currentResolution[1] / 720
+	
 	var rng = RandomNumberGenerator.new()
-	timer.connect("timeout", self, "print_velocity")
-	self.add_child(timer)
-	timer.start(1)
+	#timer.connect("timeout", self, "print_velocity")
+	#self.add_child(timer)
+	#timer.start(1)
 	rng.randomize()
 	self.position = Vector2(rng.randi_range(50, GlobalVars.currentResolution[0]-50), GlobalVars.currentResolution[1] / 2)
 	var vx = randf() + 0.1
@@ -24,8 +28,7 @@ func _ready():
 	self.linear_velocity = Vector2(vx, vy)
 	self.linear_velocity = linear_velocity.normalized()*INIT_VEL
 	
-	MIN_VEL *= GlobalVars.currentResolution[1] / 720
-	MAX_VEL *= GlobalVars.currentResolution[1] / 720
+
 
 
 func _physics_process(_delta):

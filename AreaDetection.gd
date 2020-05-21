@@ -43,7 +43,9 @@ func count_down():
 
 
 func reload_scene():
-	$"../../Ball".free()
+	var ball = $"../..".find_node("Ball", false, false)
+	if ball != null:
+		ball.free()
 	var to_add = BALLSC.instance()
 	to_add.name = "Ball"
 	$"../../".add_child(to_add)

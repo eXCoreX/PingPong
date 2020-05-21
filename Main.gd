@@ -1,6 +1,11 @@
 extends Node2D
 
+var firstDelay = true
+
 func _ready():
+	if firstDelay:
+		firstDelay = false
+		$WorldBorder/PlayerArea.count_down()
 	var _con = get_viewport().connect("size_changed", self, "_on_resize")
 	pass
 	

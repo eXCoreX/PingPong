@@ -1,13 +1,17 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://Ball.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/PingPong_enemyPlatform.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/PingPong_playerPlatform.png" type="Texture" id=2]
 [ext_resource path="res://Player.gd" type="Script" id=3]
 [ext_resource path="res://Enemy.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/PingPong_wall.png" type="Texture" id=5]
 [ext_resource path="res://Main.gd" type="Script" id=6]
 [ext_resource path="res://AreaDetection.gd" type="Script" id=7]
 [ext_resource path="res://Fonts/Roboto-Black.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://WorldBorder.gd" type="Script" id=9]
 [ext_resource path="res://LabelInit.gd" type="Script" id=10]
+[ext_resource path="res://Sprites/PingPong_playerZone.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/PingPong_enemyZone.png" type="Texture" id=12]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 20.0
@@ -17,19 +21,19 @@ height = 80.0
 radius = 20.0
 height = 80.0
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 1600, 50 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 1600, 50 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 610, 50 )
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 610, 50 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=7]
 size = 32
 font_data = ExtResource( 8 )
 
@@ -44,6 +48,10 @@ script = ExtResource( 4 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
+[node name="Sprite2" type="Sprite" parent="Enemy"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 1 )
+
 [node name="Player" type="KinematicBody2D" parent="."]
 position = Vector2( 640, 670 )
 script = ExtResource( 3 )
@@ -53,7 +61,9 @@ moveSpeed = 10.0
 rotation = 1.5708
 shape = SubResource( 2 )
 
-[node name="Ball" parent="." instance=ExtResource( 1 )]
+[node name="Sprite" type="Sprite" parent="Player"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 2 )
 
 [node name="WorldBorder" type="StaticBody2D" parent="."]
 script = ExtResource( 9 )
@@ -61,19 +71,35 @@ script = ExtResource( 9 )
 [node name="RightWall" type="CollisionShape2D" parent="WorldBorder"]
 position = Vector2( 1320, 360 )
 rotation = 1.5708
-shape = SubResource( 7 )
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="WorldBorder/RightWall"]
+position = Vector2( 1.37711e-08, 0.315045 )
+rotation = -1.5708
+scale = Vector2( 0.2, 1 )
+texture = ExtResource( 5 )
 
 [node name="LeftWall" type="CollisionShape2D" parent="WorldBorder"]
 position = Vector2( -40, 360 )
 rotation = -1.5708
-shape = SubResource( 8 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="WorldBorder/LeftWall"]
+rotation = -1.5708
+scale = Vector2( 0.2, 1 )
+texture = ExtResource( 5 )
 
 [node name="EnemyArea" type="Area2D" parent="WorldBorder"]
 position = Vector2( 640, -40 )
 script = ExtResource( 7 )
 
 [node name="EnemyAreaColl" type="CollisionShape2D" parent="WorldBorder/EnemyArea"]
-shape = SubResource( 9 )
+shape = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="WorldBorder/EnemyArea"]
+rotation = 3.14159
+scale = Vector2( 0.4, 0.2 )
+texture = ExtResource( 12 )
 
 [node name="PlayerArea" type="Area2D" parent="WorldBorder"]
 position = Vector2( 640, 760 )
@@ -81,13 +107,17 @@ script = ExtResource( 7 )
 
 [node name="PlayerAreaColl" type="CollisionShape2D" parent="WorldBorder/PlayerArea"]
 rotation = -3.14159
-shape = SubResource( 10 )
+shape = SubResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="WorldBorder/PlayerArea"]
+scale = Vector2( 0.4, 0.2 )
+texture = ExtResource( 11 )
 
 [node name="Label" type="Label" parent="."]
 visible = false
 margin_right = 1280.0
 margin_bottom = 720.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 7 )
 text = "SCORE:
 YOU 0
 ENEMY 0"
@@ -102,7 +132,7 @@ __meta__ = {
 visible = false
 margin_right = 1280.0
 margin_bottom = 720.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 7 )
 text = "3"
 align = 1
 valign = 1
@@ -110,5 +140,3 @@ script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="body_entered" from="WorldBorder/EnemyArea" to="WorldBorder/EnemyArea" method="_on_ScoreArea_body_entered"]
-[connection signal="body_entered" from="WorldBorder/PlayerArea" to="WorldBorder/PlayerArea" method="_on_ScoreArea_body_entered"]
