@@ -27,8 +27,6 @@ func _ready():
 		vy *= -1
 	self.linear_velocity = Vector2(vx, vy)
 	self.linear_velocity = linear_velocity.normalized()*INIT_VEL
-	
-
 
 
 func _physics_process(_delta):

@@ -2,7 +2,8 @@ extends Label
 
 
 func _ready():
-	pass # Replace with function body.
+	pass
+
 
 var i = 0.0
 

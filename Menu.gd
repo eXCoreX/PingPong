@@ -29,7 +29,6 @@ func _on_resize():
 	if OS.window_size[0] / OS.window_size[1] < GlobalVars.minimumAspectRatio:
 		OS.window_size[0] = OS.window_size[1]
 	call_deferred("_on_resize_2")
-	pass
 
 
 func _on_resize_2():

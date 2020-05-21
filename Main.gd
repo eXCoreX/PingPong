@@ -9,9 +9,8 @@ func _ready():
 	var _con = get_viewport().connect("size_changed", self, "_on_resize")
 	$BackgroundSprite.scale = Vector2(0.425*GlobalVars.currentResolution[0]/1280, 0.425*GlobalVars.currentResolution[0]/1280)
 	$BackgroundSprite.position = GlobalVars.currentResolution / 2
-	pass
-	
-	
+
+
 func _input(_event):
 	if Input.is_action_just_pressed("ui_fullscreen"):
 		call_deferred("toggle_fullscreen")
@@ -23,11 +22,11 @@ func _input(_event):
 		popup.rect_position = GlobalVars.currentResolution / 2 - Vector2(50, 30)
 		popup.show()
 		popup.connect("confirmed", self, "_on_exit_confirm")
-		
+
 
 func _on_exit_confirm():
 	get_tree().change_scene("Menu.tscn")
-	
+
 
 func toggle_fullscreen():
 	if !OS.window_fullscreen:
@@ -41,6 +40,7 @@ func toggle_fullscreen():
 	print(OS.window_size)
 	call_deferred("_on_resize")
 
+
 func _on_resize():
 	if OS.window_size[0] < GlobalVars.minimumResolution[0]:
 		OS.window_size[0] = GlobalVars.minimumResolution[0]
@@ -49,7 +49,6 @@ func _on_resize():
 	if OS.window_size[0] / OS.window_size[1] < GlobalVars.minimumAspectRatio:
 		OS.window_size[0] = OS.window_size[1]
 	call_deferred("_on_resize_2")
-	pass
 
 
 func _on_resize_2():

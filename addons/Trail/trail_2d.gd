@@ -42,6 +42,7 @@ func _ready():
 	set_as_toplevel(true)
 	position = Vector2()
 
+
 func _emit():
 	var _position :Vector2 = target.global_transform.origin + offset
 	var point = Point.new(_position, lifetime)
@@ -54,7 +55,8 @@ func _emit():
 		trail_points.push_back(point)
 	
 	update_points()
-	
+
+
 func update_points() -> void:
 	var delta = get_process_delta_time()
 		
@@ -69,7 +71,7 @@ func update_points() -> void:
 		
 #		if point:
 		add_point(point.position)
-	
+
 
 func _process(delta):
 	if emit:

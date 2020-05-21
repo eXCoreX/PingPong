@@ -8,18 +8,16 @@ func _ready():
 	DIFFICULTY = GlobalVars.currentDifficulty
 	match DIFFICULTY:
 		0:
-			moveSpeed = 4
+			moveSpeed = 3
 		1:
-			moveSpeed = 4.5
+			moveSpeed = 4
 		2:
 			moveSpeed = 5
 		3:
 			moveSpeed = 6
 #	yCompensate = moveSpeed * 10
-	moveSpeed *= GlobalVars.currentResolution[1] / 720.0
 	self.position[0] = GlobalVars.currentResolution[0] / 2
 
-	pass
 
 var prev_bPosx_predict = 0
 var prev_bVel = Vector2(0, 0)
