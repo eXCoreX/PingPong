@@ -5,6 +5,7 @@ export(int, "Easy", "Medium", "Hard", "INSANE") var DIFFICULTY = 1
 var moveSpeed = 3
 var yCompensate = 30
 func _ready():
+	DIFFICULTY = GlobalVars.currentDifficulty
 	match DIFFICULTY:
 		0:
 			moveSpeed = 4
@@ -14,9 +15,10 @@ func _ready():
 			moveSpeed = 5
 		3:
 			moveSpeed = 6
+	yCompensate = moveSpeed * 10
 	moveSpeed *= 720.0 / GlobalVars.currentResolution[1]
 	self.position[0] = GlobalVars.currentResolution[0] / 2
-	yCompensate = moveSpeed * 10
+
 	pass
 
 var prev_bPosx_predict = 0
@@ -28,7 +30,7 @@ func _physics_process(delta):
 	if ball == null:
 		return
 	var bVel = ball.linear_velocity
-	if bVel[1] > 0 || ball.position[1] < self.position[1]:
+	if bVel[1] > 0 || ball.position[1] < self.position[1] - 100:
 		return
 	if bVel != prev_bVel:
 		prev_bVel = bVel
