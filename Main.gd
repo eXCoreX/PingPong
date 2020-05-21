@@ -15,6 +15,18 @@ func _ready():
 func _input(_event):
 	if Input.is_action_just_pressed("ui_fullscreen"):
 		call_deferred("toggle_fullscreen")
+	elif Input.is_action_just_pressed("ui_cancel"):
+		var popup = AcceptDialog.new()
+		popup.dialog_text = "Exit to main menu?"
+		add_child(popup)
+		popup.rect_position = GlobalVars.currentResolution / 2 - Vector2(50, 30)
+		popup.show()
+		popup.connect("confirmed", self, "_on_exit_confirm")
+		
+
+func _on_exit_confirm():
+	get_tree().change_scene("Menu.tscn")
+	
 
 func toggle_fullscreen():
 	if !OS.window_fullscreen:
