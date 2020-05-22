@@ -9,6 +9,7 @@ func _ready():
 	var _con = get_viewport().connect("size_changed", self, "_on_resize")
 	$BackgroundSprite.scale = Vector2(0.425*GlobalVars.currentResolution[0]/1280, 0.425*GlobalVars.currentResolution[0]/1280)
 	$BackgroundSprite.position = GlobalVars.currentResolution / 2
+	OS.vsync_enabled = GlobalVars.vSyncEnabled
 
 
 func _input(_event):
