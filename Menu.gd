@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	get_viewport().connect("size_changed", self, "_on_resize")
+	var _con = get_viewport().connect("size_changed", self, "_on_resize")
 	pass
 
 
