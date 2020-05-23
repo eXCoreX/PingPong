@@ -1,6 +1,7 @@
 extends Control
 
 func _ready():
+	get_viewport().connect("size_changed", self, "_on_resize")
 	pass
 
 
@@ -22,8 +23,8 @@ func toggle_fullscreen():
 
 
 func _on_resize():
-	if OS.window_size[0] < GlobalVars.minimumResolution[0]:
-		OS.window_size[0] = GlobalVars.minimumResolution[0]
+	if OS.window_size[0] < 1000:
+		OS.window_size[0] = 1000
 	if OS.window_size[1] < GlobalVars.minimumResolution[1]:
 		OS.window_size[1] = GlobalVars.minimumResolution[1]
 	if OS.window_size[0] / OS.window_size[1] < GlobalVars.minimumAspectRatio:

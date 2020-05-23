@@ -97,7 +97,7 @@ anchor_left = 0.55
 anchor_top = 0.9
 anchor_right = 0.65
 anchor_bottom = 0.949
-margin_right = -6.10352e-05
+margin_right = -0.00012207
 margin_bottom = -35.28
 custom_fonts/font = SubResource( 3 )
 text = "Hard"
@@ -119,7 +119,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
+[node name="LabelDifficulty" type="Label" parent="."]
 anchor_left = 0.4
 anchor_top = 0.8
 anchor_right = 0.6
@@ -138,7 +138,6 @@ anchor_left = 0.3
 anchor_top = 0.1
 anchor_right = 0.714
 anchor_bottom = 0.3
-margin_right = -17.92
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "PING PONG"
@@ -163,7 +162,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CheckBox" type="CheckBox" parent="."]
+[node name="LabelAuthor" type="Label" parent="."]
+anchor_left = 0.9
+anchor_top = 0.9
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 6 )
+text = "by eXCore"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBoxVsync" type="CheckBox" parent="."]
 anchor_left = 0.8
 anchor_top = 0.1
 anchor_right = 0.95
@@ -180,4 +192,4 @@ __meta__ = {
 [connection signal="pressed" from="ButtonMedium" to="ButtonMedium" method="_on_ButtonDifficulty_pressed"]
 [connection signal="pressed" from="ButtonHard" to="ButtonHard" method="_on_ButtonDifficulty_pressed"]
 [connection signal="pressed" from="ButtonInsane" to="ButtonInsane" method="_on_ButtonDifficulty_pressed"]
-[connection signal="toggled" from="CheckBox" to="CheckBox" method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="CheckBoxVsync" to="CheckBoxVsync" method="_on_CheckBox_toggled"]
