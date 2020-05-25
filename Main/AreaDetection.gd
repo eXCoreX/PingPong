@@ -1,6 +1,6 @@
 extends Area2D
 
-const BALLSC = preload("res://Ball.tscn")
+const BALLSC = preload("res://Main/Ball.tscn")
 
 var timer = Timer.new()
 
