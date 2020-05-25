@@ -17,10 +17,20 @@ func _input(_event):
 		call_deferred("toggle_fullscreen")
 	elif Input.is_action_just_pressed("ui_cancel"):
 		var popup = AcceptDialog.new()
+		var fontData = DynamicFontData.new()
+		fontData.font_path = "res://Fonts/Roboto-Black.ttf"
+		var font = DynamicFont.new()
+		font.font_data = fontData
+		font.size = 24 * GlobalVars.currentResolution.x / 1280
+		var theme = Theme.new()
+		theme.default_font = font
+		popup.theme = theme
+		
 		popup.dialog_text = "Exit to main menu?"
 		popup.window_title = ""
 		add_child(popup)
-		popup.rect_position = GlobalVars.currentResolution / 2 - Vector2(50, 30)
+		popup.rect_size.x = GlobalVars.currentResolution.x / 3
+		popup.rect_position = GlobalVars.currentResolution / 3
 		popup.show()
 		popup.connect("confirmed", self, "_on_exit_confirm")
 

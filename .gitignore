@@ -51,3 +51,5 @@ export_presets.cfg
 
 # End of https://www.gitignore.io/api/c++,godot
 .DS_Store
+
+*.rar

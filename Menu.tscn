@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Fonts/Roboto-Black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://PlayButton.gd" type="Script" id=2]
@@ -7,6 +7,11 @@
 [ext_resource path="res://Menu.gd" type="Script" id=5]
 [ext_resource path="res://ButtonExit.gd" type="Script" id=6]
 [ext_resource path="res://CheckBoxVSync.gd" type="Script" id=7]
+[ext_resource path="res://Sprites/menu_background.jpg" type="Texture" id=8]
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 1920, 1200 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
@@ -45,13 +50,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ButtonPlay" type="Button" parent="."]
 anchor_left = 0.1
 anchor_top = 0.35
 anchor_right = 0.9
 anchor_bottom = 0.65
 custom_fonts/font = SubResource( 1 )
-text = "PLAY"
+text = "Дякую за увагу!"
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -74,7 +87,6 @@ anchor_left = 0.15
 anchor_top = 0.9
 anchor_right = 0.25
 anchor_bottom = 0.949
-margin_bottom = -35.28
 custom_fonts/font = SubResource( 3 )
 text = "Easy"
 script = ExtResource( 3 )
@@ -87,7 +99,6 @@ anchor_left = 0.35
 anchor_top = 0.9
 anchor_right = 0.45
 anchor_bottom = 0.949
-margin_bottom = -35.28
 custom_fonts/font = SubResource( 3 )
 text = "Medium"
 script = ExtResource( 3 )
@@ -97,8 +108,6 @@ anchor_left = 0.55
 anchor_top = 0.9
 anchor_right = 0.65
 anchor_bottom = 0.949
-margin_right = -0.00012207
-margin_bottom = -35.28
 custom_fonts/font = SubResource( 3 )
 text = "Hard"
 script = ExtResource( 3 )
@@ -111,7 +120,6 @@ anchor_left = 0.75
 anchor_top = 0.9
 anchor_right = 0.85
 anchor_bottom = 0.949
-margin_bottom = -35.28
 custom_fonts/font = SubResource( 3 )
 text = "INSANE"
 script = ExtResource( 3 )
@@ -124,7 +132,6 @@ anchor_left = 0.4
 anchor_top = 0.8
 anchor_right = 0.6
 anchor_bottom = 0.864
-margin_bottom = -46.08
 custom_fonts/font = SubResource( 4 )
 text = "Difficulty:"
 align = 1
@@ -153,8 +160,6 @@ anchor_left = 0.65
 anchor_top = 0.7
 anchor_right = 0.9
 anchor_bottom = 0.8
-margin_left = 1.22778
-margin_right = 1.22778
 custom_fonts/font = SubResource( 6 )
 text = "F11 or Ctrl/Cmd + F - toggle fullscreen
 Esc - exit to menu"
