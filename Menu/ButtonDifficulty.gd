@@ -44,12 +44,4 @@ func _on_ButtonDifficulty_pressed():
 			$"../ButtonHard"._ready()
 		3:
 			$"../ButtonInsane"._ready()
-	match GlobalVars.currentDifficulty:
-		0:
-			$"../ButtonEasy"._ready()
-		1:
-			$"../ButtonMedium"._ready()
-		2:
-			$"../ButtonHard"._ready()
-		3:
-			$"../ButtonInsane"._ready()
+	self._ready()
